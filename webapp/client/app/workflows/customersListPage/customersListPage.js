@@ -5,11 +5,26 @@ Session.setDefault('selectedPagination', 0);
 Session.setDefault('skipCount', 0);
 
 
-Template.miniMongoTable.events({
+
+//------------------------------------------------------------------------------
+// ROUTING
+
+Router.map(function(){
+  this.route('customersListPage', {
+    path: '/customers',
+    template: 'customersListPage'
+  });
+});
+
+
+//------------------------------------------------------------------------------
+// TEMPLATE INPUTS
+
+Template.customersListPage.events({
   // use keyup to implement dynamic filtering
   // keyup is preferred to keypress because of end-of-line issues
-  'keyup #searchInput': function() {
-    Session.set('accountSearchFilter', $('#searchInput').val());
+  'keyup #customersSearchInput': function() {
+    Session.set('accountSearchFilter', $('#customersSearchInput').val());
   },
   // we set the same session variable from multiple buttons
   'click #twentyButton': function() {
@@ -22,14 +37,18 @@ Template.miniMongoTable.events({
     Session.set('tableLimit', 100);
   },
   // this.index refers to a data context defined by
-  // Template.miniMongoTable.paginationButtonList()
+  // Template.customersListPage.paginationButtonList()
   'click .pagination-btn': function() {
     Session.set('selectedPagination', this.index);
     Session.set('skipCount', this.index * Session.get('tableLimit'));
   }
 });
 
-Template.miniMongoTable.helpers({
+
+//------------------------------------------------------------------------------
+// TEMPLATE OUTPUTS
+
+Template.customersListPage.helpers({
   customersList: function() {
     // this triggers a refresh of data elsewhere in the table
     // step C:  receive some data and set our reactive data variable with a new value

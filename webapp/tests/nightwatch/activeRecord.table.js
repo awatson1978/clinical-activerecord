@@ -1,6 +1,6 @@
 // tests/leaderboard.js
 module.exports = {
-  "MiniMongo Table Walkthrough" : function (client) {
+  "ActiveRecord::Table Walkthrough" : function (client) {
     client
     .url("http://localhost:3000")
     .waitForElementVisible('body', 1000)
@@ -11,7 +11,7 @@ module.exports = {
     .verify.elementPresent("#customersTable", 10000)
 
     // make sure we have all the main elements in the table
-    .verify.elementPresent("#searchInput")
+    .verify.elementPresent("#customersSearchInput")
     .verify.elementPresent("#customersTable thead")
     .verify.elementPresent("#customersTable thead tr")
     .verify.elementPresent("#customersTable thead tr th")
@@ -55,7 +55,7 @@ module.exports = {
     .verify.elementPresent("#hundredButton")
 
     // lets check that pagination buttons are present
-    .verify.elementPresent("#paginationButtonGroup")
+    .verify.elementPresent("#customersListPaginationButtons")
     .verify.elementPresent("#pagination-btn-0")
     .verify.elementPresent("#pagination-btn-1")
     .verify.elementPresent("#pagination-btn-2")
@@ -113,7 +113,7 @@ module.exports = {
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(21)")
 
     // lets check that pagination buttons are present
-    .verify.elementPresent("#paginationButtonGroup")
+    .verify.elementPresent("#customersListPaginationButtons")
     .verify.elementPresent("#pagination-btn-0")
     .verify.elementPresent("#pagination-btn-1")
     .verify.elementPresent("#pagination-btn-2")
@@ -151,8 +151,8 @@ module.exports = {
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(8) tr td:nth-child(5)", "lashawn@hasty.com")
 
     // lets try some searching
-    .clearValue('#searchInput')
-    .setValue('#searchInput', "Va")
+    .clearValue('#customersSearchInput')
+    .setValue('#customersSearchInput', "Va")
 
     // essie should still be there, because her last name is Vaill
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(1) tr td:nth-child(1)", "Essie")
@@ -172,8 +172,8 @@ module.exports = {
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(8) tr td:nth-child(5)", "vanessa@lewallen.com")
 
     // lets search for valerie
-    .clearValue('#searchInput')
-    .setValue('#searchInput', "Valerie")
+    .clearValue('#customersSearchInput')
+    .setValue('#customersSearchInput', "Valerie")
 
     // there she is
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(1) tr td:nth-child(1)", "Valerie")
@@ -186,7 +186,7 @@ module.exports = {
     .verify.elementNotPresent("##customersTable tbody tr:nth-child(2)")
 
     // clear our input, and we should be back to Essie
-    .clearValue('#searchInput')
+    .clearValue('#customersSearchInput')
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(1) tr td:nth-child(1)", "Essie")
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(1) tr td:nth-child(2)", "Vaill")
     .verify.elementNotPresent("#customersTable tbody tr:nth-child(1) tr td:nth-child(3)", "Litronic Industries")

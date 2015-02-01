@@ -44,12 +44,18 @@ Schemas.Customer = new SimpleSchema({
   Zip: {
     type: String,
     label: "Zip",
-    regEx: /^[0-9]{5}$/
+    regEx: /(^\d{5}$)|(^\d{5}-\d{4}$)/
   },
   Phone: {
     type: String,
     label: "Phone",
     regEx: /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i
+  },
+  Fax: {
+    type: String,
+    label: "Fax",
+    regEx: /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i,
+    optional: true    
   },
   Email: {
     type: String,
@@ -60,5 +66,11 @@ Schemas.Customer = new SimpleSchema({
     type: String,
     label: "Web",
     regEx: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+  },
+  Notes: {
+    type: String,
+    label: "Notes",
+    max: 1024,
+    optional: true
   }
 });
