@@ -1,7 +1,7 @@
 clinical-activerecord
 ================
 
-ActiveRecord pattern (CRUDL) implemented in Meteor, with reactive table, forms, schemas, and other components.  
+ActiveRecord pattern (CRUDL) implemented in Meteor, with reactive table, forms, schemas, testing, and other components.  
 
 ![travisci](https://travis-ci.org/awatson1978/clinical-activerecord.svg)
 
